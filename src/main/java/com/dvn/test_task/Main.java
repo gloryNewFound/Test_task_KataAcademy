@@ -41,14 +41,20 @@ public class Main {
         return string.matches("\\d+");
     }
 
+    private static boolean isDigitIsBetween1And10Incl(int digit) {
+        return (digit <= 10) && (digit >= 1);
+    }
+
     private static boolean isRomeDigit(String string) {
         return string.matches("[IVXLDM]+");
     }
 
     private static String arabCalc(String[] arguments) throws Exception {
         int a = Integer.parseInt(arguments[0]);
+        if (!isDigitIsBetween1And10Incl(a)) throw new Exception();
         if (!isArabDigit(arguments[2])) throw new Exception();
         int b = Integer.parseInt(arguments[2]);
+        if (!isDigitIsBetween1And10Incl(b)) throw new Exception();
         String action = arguments[1];
         int result = getCalculationResult(a, b, action);
         return result + "";
@@ -59,8 +65,16 @@ public class Main {
         int a = RomeDigits.valueOf(arguments[0]).getArabDigit();
         int b = RomeDigits.valueOf(arguments[2]).getArabDigit();
         String action = arguments[1];
-        int result = getCalculationResult(a, b, action);
-        return result + "";
+        int calcResult = getCalculationResult(a, b, action);
+        if (calcResult < 1) {
+            throw new Exception();
+        }
+        for (RomeDigits digit: RomeDigits.values()) {
+            if (digit.getArabDigit() == calcResult) {
+                return digit.name();
+            }
+        }
+        return "";
     }
 
     private static int getCalculationResult(int a, int b, String action) throws Exception {
@@ -92,15 +106,10 @@ enum RomeDigits {
     IX(9),
     X(10);
 
-    private String romeDigit;
     private int arabDigit;
 
     RomeDigits(int arabDigit) {
         this.arabDigit = arabDigit;
-    }
-
-    public String getRomeDigit() {
-        return romeDigit;
     }
 
     public int getArabDigit() {

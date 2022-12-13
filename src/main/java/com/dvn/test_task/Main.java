@@ -106,6 +106,8 @@ class RomeDigitsClass {
         forArabToRome.put(10, "X");
         forArabToRome.put(40, "XL");
         forArabToRome.put(50, "L");
+        forArabToRome.put(90, "XC");
+        forArabToRome.put(100, "C");
     }
 
     public static String fromArabToRome(int arabDigit) {
@@ -126,7 +128,8 @@ class RomeDigitsClass {
         forRomeToArab.put('I', 1);
         forRomeToArab.put('V', 5);
         forRomeToArab.put('X', 10);
-        forRomeToArab.put('L', 50);
+//        forRomeToArab.put('L', 50);
+//        forRomeToArab.put('C', 100);
     }
 
     public static int fromRomeToArab(String romeDigit) {

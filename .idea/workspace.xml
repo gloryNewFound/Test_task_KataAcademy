@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb3954eb-e90d-4ebe-9af4-2e1c957d8174" name="Changes" comment="Unit tests were added&#10;Fixed 3 bags">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dvn/test_task/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dvn/test_task/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dvn/test_task/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dvn/test_task/MainTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="eb3954eb-e90d-4ebe-9af4-2e1c957d8174" name="Changes" comment="Rome digits convertor was added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -164,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670674704587</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Rome digits convertor was added">
+      <created>1670919506101</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670919506101</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,6 +185,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Unit tests were added&#10;Fixed 3 bags" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unit tests were added&#10;Fixed 3 bags" />
+    <MESSAGE value="Rome digits convertor was added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rome digits convertor was added" />
   </component>
 </project>

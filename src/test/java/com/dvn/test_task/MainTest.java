@@ -2,17 +2,16 @@ package com.dvn.test_task;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class MainTest {
+
+
     @Test
     @DisplayName("FROM KataAcademy mentor: Checking of rome digits calculation")
     void romeDigitsCalcTest() throws Exception {
-        String test = Main.calc("I + III");
-        Assertions.assertEquals("IV", test);
+        String test = Main.calc("V + VI");
+        Assertions.assertEquals("XI", test);
     }
 
     @Test

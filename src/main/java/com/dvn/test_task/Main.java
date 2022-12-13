@@ -3,13 +3,14 @@ package com.dvn.test_task;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
 
 //    a + b, a - b, a * b, a / b
 
     public static void main( String[] args ) throws Exception {
-        System.out.println("Please, write arithmetical exception of two number");
+        System.out.println("Please, write arithmetical expression of two number");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String input;
         try {
@@ -19,7 +20,9 @@ public class Main {
         }
 
         System.out.println(calc(input));
+
     }
+
 
     public static String calc(String input) throws Exception {
         String[] arguments = input.split("\s"); //
@@ -62,19 +65,17 @@ public class Main {
 
     private static String romeCalc(String[] arguments) throws Exception {
         if (!isRomeDigit(arguments[2])) throw new Exception();
-        int a = RomeDigits.valueOf(arguments[0]).getArabDigit();
-        int b = RomeDigits.valueOf(arguments[2]).getArabDigit();
+        int a = RomeDigitsClass.fromRomeToArab(arguments[0]);
+        if (!isDigitIsBetween1And10Incl(a)) throw new Exception();
+        int b = RomeDigitsClass.fromRomeToArab(arguments[2]);
+        if (!isDigitIsBetween1And10Incl(b)) throw new Exception();
         String action = arguments[1];
         int calcResult = getCalculationResult(a, b, action);
         if (calcResult < 1) {
             throw new Exception();
         }
-        for (RomeDigits digit: RomeDigits.values()) {
-            if (digit.getArabDigit() == calcResult) {
-                return digit.name();
-            }
-        }
-        return "";
+
+        return RomeDigitsClass.fromArabToRome(calcResult);
     }
 
     private static int getCalculationResult(int a, int b, String action) throws Exception {
@@ -93,27 +94,54 @@ public class Main {
 
 }
 
-enum RomeDigits {
+class RomeDigitsClass {
 
-    I(1),
-    II(2),
-    III(3),
-    IV(4),
-    V( 5),
-    VI(6),
-    VII(7),
-    VIII(8),
-    IX(9),
-    X(10);
 
-    private int arabDigit;
-
-    RomeDigits(int arabDigit) {
-        this.arabDigit = arabDigit;
+    private static Map<Integer, String> forArabToRome = new TreeMap<>(Collections.reverseOrder());
+    static {
+        forArabToRome.put(1, "I");
+        forArabToRome.put(4, "IV");
+        forArabToRome.put(5, "V");
+        forArabToRome.put(9, "IX");
+        forArabToRome.put(10, "X");
+        forArabToRome.put(40, "XL");
+        forArabToRome.put(50, "L");
     }
 
-    public int getArabDigit() {
-        return arabDigit;
+    public static String fromArabToRome(int arabDigit) {
+        StringBuilder romeNumber = new StringBuilder();
+        for (int i: forArabToRome.keySet()) {
+            int index = arabDigit / i;
+            arabDigit = arabDigit - i * index;
+            while (index > 0) {
+                romeNumber.append(forArabToRome.get(i));
+                index--;
+            }
+        }
+        return romeNumber.toString();
+    }
+
+    private static Map<Character, Integer> forRomeToArab = new HashMap<>();
+    static {
+        forRomeToArab.put('I', 1);
+        forRomeToArab.put('V', 5);
+        forRomeToArab.put('X', 10);
+        forRomeToArab.put('L', 50);
+    }
+
+    public static int fromRomeToArab(String romeDigit) {
+        int result = 0;
+        int temp = -1;
+        for (int i = romeDigit.length() - 1; i >= 0; i--) {
+            if (temp > forRomeToArab.get(romeDigit.charAt(i))) {
+                result -= forRomeToArab.get(romeDigit.charAt(i));
+            } else {
+                result += forRomeToArab.get(romeDigit.charAt(i));
+            }
+            temp = forRomeToArab.get(romeDigit.charAt(i));
+        }
+        return result;
     }
 
 }
+
